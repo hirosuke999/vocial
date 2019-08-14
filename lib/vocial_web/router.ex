@@ -20,6 +20,9 @@ defmodule VocialWeb.Router do
     get "/polls", PollController, :index
     get "/polls/new", PollController, :new
     post "/polls", PollController, :create
+    get "/users/new", UserController, :new
+    get "/users/:id", UserController, :show
+    post "/users", UserController, :create
   end
 
   # Other scopes may use custom stacks.

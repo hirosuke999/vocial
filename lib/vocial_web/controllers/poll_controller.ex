@@ -2,7 +2,6 @@ defmodule VocialWeb.PollController do
   use VocialWeb, :controller
 
   alias Vocial.Votes
-  alias VocialWeb.Router.Helpers, as: Routes
 
   def index(conn, _params) do
     polls = Votes.list_polls()

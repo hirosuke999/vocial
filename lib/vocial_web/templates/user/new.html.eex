@@ -1,0 +1,8 @@
+<h2>User Signup</h2>
+<hr>
+<div>
+  <%= form_for @user, Routes.user_path(conn, :create), fn f -> %>
+  <%= label: f, :username, "Username:" %>
+
+  <% end %>
+</div>
