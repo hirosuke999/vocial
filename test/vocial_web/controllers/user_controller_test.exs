@@ -3,7 +3,10 @@ defmodule VocialWeb.UserControllerTest do
 
   test "GET /users/new", %{conn: conn} do
     conn = get(conn, "/users/new")
-    assert html_response(conn, 200) =~ "User Signup"
+    response = html_response(conn, 200)
+    assert response =~ "User Signup"
+    assert conn.assigns.user.__struct__ == Ecto.Changeset
+    assert response =~ "action=\"/users\" method=\"post\""
   end
 
   test "GET /users/:id", %{conn: conn} do

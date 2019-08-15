@@ -1,6 +1,6 @@
 <div class="poll-form">
   <h2>New Poll</h2>
-  <%= form_for @poll, VocialWeb.Router.Helpers.poll_path(@conn, :create), fn f -> %>
+  <%= form_for @poll, Routes.poll_path(@conn, :create), fn f -> %>
   <label>
     Title:<br>
     <%= text_input f, :title %>
