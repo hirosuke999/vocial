@@ -8,6 +8,14 @@
     <br>
     <%= text_input f, :email %>
     <br>
+    <%= label f, :password, "Password:" %>
+    <br>
+    <%= password_input f, :password %>
+    <br>
+    <%= label f, :password_confrimation, "Confirm your password:" %>
+    <br>
+    <%= password_input f, :password_confrimation %>
+    <br>
     <%= submit "Sign Up" %>
   <% end %>
 </div>

@@ -1,6 +1,13 @@
 defmodule VocialWeb.UserControllerTest do
   use VocialWeb.ConnCase
 
+  @create_params %{
+    "username" => "test",
+    "email" => "test@test.com",
+    "password" => "test",
+    "password_confirmation" => "test"
+  }
+
   test "GET /users/new", %{conn: conn} do
     conn = get(conn, "/users/new")
     response = html_response(conn, 200)
@@ -11,7 +18,7 @@ defmodule VocialWeb.UserControllerTest do
 
   test "GET /users/:id", %{conn: conn} do
     with {:ok, user} <-
-           Vocial.Accounts.create_user(%{username: "test", email: "test@test.com"}) do
+           Vocial.Accounts.create_user(@create_params) do
       conn = get(conn, "/users/#{user.id}")
       assert html_response(conn, 200) =~ user.username
     else
@@ -20,8 +27,7 @@ defmodule VocialWeb.UserControllerTest do
   end
 
   test "POST /users", %{conn: conn} do
-    user_params = %{"username" => "test", "email" => "test@test.com"}
-    conn = post(conn, "/users", %{"user" => user_params})
+    conn = post(conn, "/users", %{"user" => @create_params})
     assert redirected_to(conn) =~ "/users/"
   end
 end
