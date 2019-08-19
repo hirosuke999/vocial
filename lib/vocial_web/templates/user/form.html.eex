@@ -12,9 +12,9 @@
     <br>
     <%= password_input f, :password %>
     <br>
-    <%= label f, :password_confrimation, "Confirm your password:" %>
+    <%= label f, :password_confirmation, "Confirm your password:" %>
     <br>
-    <%= password_input f, :password_confrimation %>
+    <%= password_input f, :password_confirmation %>
     <br>
     <%= submit "Sign Up" %>
   <% end %>
