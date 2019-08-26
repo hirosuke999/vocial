@@ -3,6 +3,8 @@ defmodule VocialWeb.PollController do
 
   alias Vocial.Votes
 
+  plug VocialWeb.VerifyUserSession when action in [:new, :create]
+
   def index(conn, _params) do
     polls = Votes.list_polls()
     render(conn, "index.html", polls: polls)
@@ -25,7 +27,7 @@ defmodule VocialWeb.PollController do
     else
       {:error, _} ->
         conn
-        |> put_flash(:alert, "Error creating Poll!")
+        |> put_flash(:error, "Error creating Poll!")
         |> redirect(to: Routes.poll_path(conn, :new))
     end
   end
