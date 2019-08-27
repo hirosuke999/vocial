@@ -62,5 +62,26 @@ defmodule Vocial.AccountsTest do
     test "get_user_by_username/1 returns nil with no motching username" do
       assert is_nil(Accounts.get_user_by_username("fail"))
     end
+
+    test "create_user/1 fails to create the user when the username already exists" do
+      _user1 = user_fixture()
+      {:error, user2} = user_fixture()
+      assert !user2.valid?
+    end
+
+    test "create_user/1 fails to create the user when the email is not an email format" do
+      {:error, user} = user_fixture(%{email: "testtestcom"})
+      assert !user.valid?
+    end
+
+    test "create_user/1 fails to create the user when the email is a fake email address" do
+      {:error, user} = user_fixture(%{email: "test@fake.com"})
+      assert !user.valid?
+    end
+
+    test "create_user/1 fails to create the user when the username is too short" do
+      {:error, user} = user_fixture(%{username: "ab"})
+      assert !user.valid?
+    end
   end
 end
