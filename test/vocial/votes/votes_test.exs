@@ -67,5 +67,16 @@ defmodule Vocial.VotesTest do
         assert Votes.list_options() == [option]
       end
     end
+
+    test "vote_on_option/1 adds a vote to a particular option", %{user: user} do
+      with {:ok, poll} <- Votes.create_poll(%{title: "Sample Poll", user_id: user.id}),
+           {:ok, option} <-
+             Votes.create_option(%{title: "Sample Choice", votes: 0, poll_id: poll.id}),
+           option <- Repo.preload(option, :poll) do
+        votes_before = option.votes
+        {:ok, updated_option} = Votes.vote_on_option(option.id)
+        assert votes_before + 1 == updated_option.votes
+      end
+    end
   end
 end

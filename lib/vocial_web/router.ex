@@ -24,6 +24,7 @@ defmodule VocialWeb.Router do
 
     get "/login", SessionController, :new
     get "/logout", SessionController, :delete
+    get "/options/:id/vote", PollController, :vote
   end
 
   # Other scopes may use custom stacks.

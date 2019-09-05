@@ -52,4 +52,17 @@ defmodule Vocial.Votes do
   def list_options() do
     Repo.all(Option) |> Repo.preload(:poll)
   end
+
+  def vote_on_option(option_id) do
+    with option <- Repo.get!(Option, option_id),
+         votes <- option.votes + 1 do
+      update_option(option, %{votes: votes})
+    end
+  end
+
+  def update_option(option, attrs) do
+    option
+    |> Option.changeset(attrs)
+    |> Repo.update()
+  end
 end
