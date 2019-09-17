@@ -34,7 +34,7 @@ defmodule VocialWeb.PollControllerTest do
 
     Enum.each(poll.options, fn option ->
       assert html_response(conn, 200) =~ "#{option.title}"
-      assert html_response(conn, 200) =~ ": #{option.votes}"
+      assert html_response(conn, 200) =~ "#{option.votes}"
     end)
   end
 
@@ -60,5 +60,10 @@ defmodule VocialWeb.PollControllerTest do
 
     assert html_response(conn, 302)
     assert redirected_to(conn) == "/polls/new"
+  end
+
+  test "GET /polls/:id", %{conn: conn, poll: poll} do
+    conn = get(conn, "/polls/#{poll.id}")
+    assert html_response(conn, 200) =~ poll.title
   end
 end
