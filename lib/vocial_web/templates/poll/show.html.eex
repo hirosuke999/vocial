@@ -1,1 +1,3 @@
+<i id="enable-polls-channel" data-poll-id="<%= @poll.id %>"/>
+<button id="polls-ping" class="btn btn-primary">Ping Websocket</button>
 <%= render("_poll.html", %{ poll: @poll }) %>

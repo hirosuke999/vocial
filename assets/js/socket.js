@@ -20,8 +20,10 @@ const onJoin = (res, channel) => {
 const socket = new Socket('/socket')
 socket.connect()
 
-if (document.getElementById('enable-polls-channel')) {
-  const channel = socket.channel('polls:lobby', {})
+const enableSocket = document.getElementById('enable-polls-channel')
+if (enableSocket) {
+  const pollId = enableSocket.getAttribute('data-poll-id')
+  const channel = socket.channel('polls:' + pollId, {})
   channel
     .join()
     .receive('ok', res => onJoin(res, channel))

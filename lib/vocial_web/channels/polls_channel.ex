@@ -1,7 +1,7 @@
 defmodule VocialWeb.PollsChannel do
   use VocialWeb, :channel
 
-  def join("polls:lobby", _payload, socket) do
+  def join("polls:" <> _poll_id, _payload, socket) do
     {:ok, socket}
   end
 

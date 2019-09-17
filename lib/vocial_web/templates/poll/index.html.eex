@@ -1,5 +1,3 @@
-<i id="enable-polls-channel" />
-<button id="polls-ping" class="btn btn-primary">Ping Websocket</button>
 <%= for poll <- @polls do %>
   <%= render("_poll.html", %{ poll: poll }) %>
 <% end %>
