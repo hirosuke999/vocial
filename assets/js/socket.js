@@ -24,7 +24,7 @@ if (document.getElementById('enable-polls-channel')) {
   const channel = socket.channel('polls:lobby', {})
   channel
     .join()
-    .receive('ok', res => onJoin(res))
+    .receive('ok', res => onJoin(res, channel))
     .receive('error', res => console.log('Failed to join channel:', res))
 
   document.getElementById('polls-ping').addEventListener('click', () => {
@@ -36,6 +36,10 @@ if (document.getElementById('enable-polls-channel')) {
 
   channel.on('pong', payload => {
     console.log("The server has been PONG'd and all is well:", payload)
+  })
+
+  channel.on('new_vote', ({ option_id, votes }) => {
+    document.getElementById('vote-count-' + option_id).innerHTML = votes
   })
 }
 
