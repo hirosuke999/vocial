@@ -39,4 +39,8 @@ defmodule VocialWeb.PollController do
       |> redirect(to: Routes.poll_path(conn, :index))
     end
   end
+
+  def show(conn, %{"id" => id}) do
+    with poll <- Votes.get_poll(id), do: render(conn, "show.html", %{poll: poll})
+  end
 end
