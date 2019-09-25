@@ -4,12 +4,14 @@ defmodule Vocial.Votes.Poll do
   alias Vocial.Votes.Poll
   alias Vocial.Votes.Option
   alias Vocial.Accounts.User
+  alias Vocial.Votes.Image
 
   schema "polls" do
     field :title, :string
 
     has_many :options, Option
     belongs_to :user, User
+    has_one :image, Image
 
     timestamps()
   end

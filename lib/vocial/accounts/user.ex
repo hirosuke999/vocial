@@ -4,6 +4,7 @@ defmodule Vocial.Accounts.User do
 
   alias Vocial.Accounts.User
   alias Vocial.Votes.Poll
+  alias Vocial.Votes.Image
 
   schema "users" do
     field :username, :string
@@ -15,6 +16,7 @@ defmodule Vocial.Accounts.User do
     field :password_confirmation, :string, virtual: true
 
     has_many :polls, Poll
+    has_many :images, Image
 
     timestamps()
   end

@@ -15,7 +15,7 @@ defmodule VocialWeb.PollController do
     render(conn, "new.html", poll: poll)
   end
 
-  def create(conn, %{"poll" => poll_params, "options" => options}) do
+  def create(conn, %{"poll" => poll_params, "options" => options, "image_data" => image_data}) do
     split_options = String.split(options, ",")
 
     with user <- get_session(conn, :user),

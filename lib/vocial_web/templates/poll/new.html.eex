@@ -1,6 +1,6 @@
 <div class="poll-form">
   <h2>New Poll</h2>
-  <%= form_for @poll, Routes.poll_path(@conn, :create), fn f -> %>
+  <%= form_for @poll, Routes.poll_path(@conn, :create), [multipart: true], fn f -> %>
   <label>
     Title:<br>
     <%= text_input f, :title %>
@@ -11,6 +11,18 @@
     <input type="text" name="options" />
   </label>
   <br>
+  <label>
+    Poll Image:<br>
+    <%= file_input f, :image %>
+  </label>
+  <label>
+    Image Caption:<br>
+    <input type="text" name="image_data[caption]"/>
+  </label>
+  <label>
+    Image Alt Text:<br>
+    <input type="text" name="image_data[alt_text]"/>
+  </label>
   <%= submit "Create" %>
   <% end %>
 </div>
