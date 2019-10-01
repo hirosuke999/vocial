@@ -8,4 +8,12 @@
         class="btn btn-primary vote-button-manual" data-option-id="<%= option.id %>">Vote</a>
     <br>
   <% end %>
+
+  <%= if @poll.image do %>
+    <div class="image-display">
+      <img src="<%= @poll.image.url %>" alt="<%= @poll.image.alt %>" style="width:350px">
+      <br/>
+      <small><%= @poll.image.caption %></small>
+    </div>
+  <% end %>
 </div>
